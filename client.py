@@ -25,4 +25,11 @@ def setupClient():
 
 
 if __name__ == '__main__':
+    print('List of commands :')
+    print('ls                         list of file/folder')
+    print('create <filename>          create file')
+    print('rm <filename/foldername>   remove file/folder')
+    print('append <filename> <text>   append text to file content')
+    print('cat <filename>             print file content')
+
     setupClient()
