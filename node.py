@@ -36,8 +36,9 @@ class ClientHandler:
         return self.server_api_dict[uri]
 
     def print_info(self):
-        for uri in self.server_api_dict.keys():
-            print(uri)
+        print('list of connected node:')
+        for i,uri in enumerate(self.server_api_dict.keys()):
+            print(str(i+1)+'. '+uri)
 
 
 if __name__ == '__main__':
@@ -95,3 +96,6 @@ if __name__ == '__main__':
             print('rm <filename/foldername>   remove file/folder')
             print('append <filename> <text>   append text to file content')
             print('cat <filename>             print file content')
+            print('connect <server uri>       connect to other node')
+            print('use <server uri>           use specific node for file server')
+            print('stat <server uri>          show list of connected node')
