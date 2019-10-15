@@ -30,7 +30,7 @@ class HeartBeatChecker(threading.Thread):
     def run(self):
         while True:
             time.sleep(2)
-            print(time.time() - HeartBeat.last_ping)
+            # print(time.time() - HeartBeat.last_ping)
             if (time.time() - HeartBeat.last_ping) > 2:
                 HeartBeat.set_die()
                 return
