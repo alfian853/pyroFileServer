@@ -17,9 +17,12 @@ class HeartBeatSender(threading.Thread):
 
     def run(self):
         while True:
-            self.heart_beat.set_alive()
-            time.sleep(1.5)
-
+            try:
+                self.heart_beat.set_alive()
+                time.sleep(1.5)
+            except:
+                print('client is gone')
+                return
 
 class ServerApi(object):
 
