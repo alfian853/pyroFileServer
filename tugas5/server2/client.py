@@ -1,6 +1,6 @@
 import Pyro4
 
-namainstance = "fileserver-1"
+namainstance = "fileserver-2"
 
 def get_fileserver_object():
     uri = "PYRONAME:{}@localhost:7777" . format(namainstance)
