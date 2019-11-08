@@ -1,33 +1,16 @@
-import threading
-from time import sleep
-
 import Pyro4
 
-
-class ClientFailureDetector(threading.Thread):
-    def __init__(self, server):
-        self.server = server
-        threading.Thread.__init__(self)
-        self.stillAlive = True
-
-    def server_still_alive(self):
-        return self.stillAlive
-
-    def run(self):
-        while True:
-            try:
-                print(self.server.ping())
-            except:
-                self.stillAlive = False
-                break
-            sleep(1)
+from client_api import FailureDetector
+from server_api import ServerApi
 
 
 def run_client():
     uri = "PYRONAME:greetserver@localhost:8888"
-    server = Pyro4.Proxy(uri)
-    failure_detector = ClientFailureDetector(server)
+    server: ServerApi = Pyro4.Proxy(uri)
+    failure_detector = FailureDetector()
     failure_detector.start()
+    client_uri: str = failure_detector.get_client_uri().asString()
+    server.set_connected(client_uri)
 
     if not failure_detector.is_alive():
         print('server is down')
